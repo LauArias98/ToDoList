@@ -1,11 +1,15 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-    <h1>Log in</h1>
+    <header>Log in</header>
     <br>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button>Go!</button>
+    <form method="POST">{% csrf_token %}
+        <label for="id_username">Username</label>
+        <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+        <br>
+        <label for="id_password">Password</label><br>
+        <input type="password" name="password" autocomplete="current-password" required="" id="id_password" >
+        <button class="orange button small">Go!</button>
     </form>
+
 {% endblock %}

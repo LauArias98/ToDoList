@@ -1,26 +1,125 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  header{
+    padding: 20px;
+    text-align: center;
+    background: #FF4500;
+    color: white;
+    font-size: 30px;
+  }
+  body{
+    background: #FFFFFF;
+    font-family: "Lucida Console";
+  }
 
-    <title>My ToDo List</title>
-  </head>
-  <body>
-  <div class="container">
-  <br><br>
 
-    {% block content %}
+.button {
+	background:#000000;
+	color:#FFFFFF;
+	display:inline-block;
+	font-size: 20px;
+	margin:10px;
+	padding:10px;
+	text-align:center;
+	width:200px;
+	text-decoration:none;
+	box-shadow:0px 3px 0px #000000;
+	width:350px;
+	border-radius:20px;
+}
+
+.button.orange {
+	background:#FF4500;
+	box-shadow:0px 3px 0px #000000;
+}
+
+.button.black {
+	background:#000000;
+	box-shadow:0px 3px 0px #000000;
+}
+
+.button.small {
+    width:60px;
+}
+
+.button.right {
+  display: flex;
+  justify-content: center;
+  align-items: right;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+input[type=text], select, text {
+  width: 50%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+input[type=password]{
+  width: 50%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+  ul li {
+  padding: 12px 8px 12px 40px;
+  background: #FF4500;
+  font-size: 20px;
+  color: #FFFFFF;
+
+}
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+  background: #000000;
+}
+
+
+
+
+</style>
+
+  {% block content %}
     replace me
     {% endblock %}
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
-</body>
-</html>
+  {% if user.is_authenticated %}
+  <div class="container">
+  <a href="{% url 'logout'%}" class="button black">Logout</a>
+  </div>
+  {% else %}
+  <div class="container">
+  <a href="{% url 'login'%}" class="button orange">Login</a>
+  <a href="{% url 'register'%}" class="button black">Register</a>
+  </div>
+  {% endif %}

@@ -9,7 +9,7 @@ def list_create_view(request):
     if form.is_valid():
         form.save()
         form = ListForm()
-
+        return redirect('../all/')
     context = {
         'form': form
     }
@@ -22,7 +22,7 @@ def list_update_view(request, id=id):
     form = ListForm(request.POST or None, instance=obj)
     if form.is_valid():
         form.save()
-        return redirect('../../admin/')
+        return redirect('../../all/')
     context = {
         'form': form
     }
@@ -42,7 +42,7 @@ def list_delete_view(request, id):
     obj = get_object_or_404(List, id=id)
     if request.method == "POST":
         obj.delete()
-        return redirect('../../admin/')
+        return redirect('../../all/')
     context = {
         'object': obj
     }
@@ -56,3 +56,18 @@ def list_list_view(request):
         "object_list": queryset
     }
     return render(request, "list/list.html", context)
+
+
+def completed_view(request):
+    completado = List.objects.filter(done = True)
+    context = {
+        "object_list": completado
+    }
+    return render(request, "list/completed.html", context)
+
+def incomplete_view(request):
+    incompleto = List.objects.filter(done = False)
+    context = {
+        "object_list": incompleto
+    }
+    return render(request, "list/incomplete.html", context)

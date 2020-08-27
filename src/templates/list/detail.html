@@ -1,5 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{ object.title }}</h1>
+<header><h1>Activity</h1></header>
+<style>
+
+
+</style>
+
+
+
+<ul>
+  <li><h3>Title</h3></li>
+  <li>{{ object.title }}</li>
+  <li><h3>Description</h3></li>
+  <li>{{ object.description }}</li>
+    <li><h3>Due date</h3></li>
+  <li>{{ object.due_date }}</li>
+    <li><h3>Finished?</h3></li>
+  <li>{{ object.done }}</li>
+</ul>
+<br>
+
+<div class="container">
+        <a href="../../all/" class="button orange">Go Back</a>
+        <a href="../../update/{{ object.id }}" class="button black">Update</a>
+        <a href="../../delete/{{ object.id}}" class="button orange">Delete</a>
+</div>
 {% endblock %}
