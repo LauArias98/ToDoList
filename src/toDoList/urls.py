@@ -22,6 +22,7 @@ from pages import views
 urlpatterns = [
     path('', views.home_view, name='home'),
     path('list/', include('list.urls')),
+    path('account/', include('account.urls')),
     #path('list/<int:id>/', list.views.list_detail_view, name='list-detail'),
     #path('create/', list.views.list_create_view),
     #path('update/<int:id>/', list.views.list_update_view),
