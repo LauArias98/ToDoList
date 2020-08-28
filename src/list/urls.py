@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import url
 from . import views
 
 app_name = 'list'
@@ -10,4 +11,6 @@ urlpatterns = [
     path('all/', views.list_list_view, name='all'),
     path('completed/', views.completed_view, name='complete'),
     path('incomplete/', views.incomplete_view, name='incomplete'),
+    path('map/', views.default_map, name='default'),
+    path('cat/', views.todays_cat, name='cat')
 ]

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import List
 from .forms import ListForm
+import requests
 # Create your views here.
 
 
@@ -65,9 +66,22 @@ def completed_view(request):
     }
     return render(request, "list/completed.html", context)
 
+
 def incomplete_view(request):
     incompleto = List.objects.filter(done = False)
     context = {
         "object_list": incompleto
     }
     return render(request, "list/incomplete.html", context)
+
+
+def default_map(request):
+    mapbox_access_token = 'pk.eyJ1IjoibGF1YXJpYXM5OCIsImEiOiJja2VkZXpraWEwMWM2MnRwNzdzdGhtN3BrIn0.ZVxB6Eeeifgoemxy28fwkg'
+    return render(request, 'list/default.html', {'mapbox_access_token': mapbox_access_token})
+
+
+def todays_cat(request):
+    response = requests.get('https://api.thecatapi.com/v1/images/search?limit=1&page=10&order=Desc')
+    data = response.json()
+    print(data[0]["url"])
+    return render(request, 'list/cat.html', {'url': data[0]['url']})
